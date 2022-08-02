@@ -18,7 +18,7 @@ package controllers
 
 import (
 	"context"
-
+	"fmt"
 	"github.com/pkg/errors"
 	v1 "k8s.io/api/core/v1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
@@ -193,6 +193,10 @@ func (r *WorkStatusReconciler) SetupWithManager(mgr ctrl.Manager) error {
 		}).
 		For(&workapi.Work{}, builder.WithPredicates(UpdateOnlyPredicate{}, predicate.ResourceVersionChangedPredicate{})).
 		Complete(r)
+}
+
+func hello() {
+	fmt.Println("Hello")
 }
 
 // We only need to process the update event
